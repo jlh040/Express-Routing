@@ -3,6 +3,13 @@ const math = require('mathjs');
 
 const app = express();
 
+function turnNumsToArr(nums) {
+    const numArr = nums.split(',');
+    return numArr.map(val => {
+        return +val;
+    })
+}
+
 app.get('/mean', (req, res, next) => {
     const nums = turnNumsToArr(req.query.nums);
     const mean = math.round(math.mean(nums), 2);
@@ -17,16 +24,6 @@ app.get('/mean', (req, res, next) => {
 
 
 
-
-
-
-
-function turnNumsToArr(nums) {
-    const numArr = nums.split(',');
-    return numArr.map(val => {
-        return +val;
-    })
-}
 
 
 
