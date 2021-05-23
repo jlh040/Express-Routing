@@ -1,5 +1,6 @@
 const express = require('express');
 const math = require('mathjs');
+const MathError = require('./mathError');
 
 const app = express();
 

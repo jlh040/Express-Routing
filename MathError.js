@@ -5,8 +5,8 @@ class MathError extends Error {
         this.status = status;
         console.log(this.stack);
     }
-}
+};
 
 module.exports = {
     MathError
-}
+};
