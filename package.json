@@ -1,0 +1,23 @@
+{
+  "name": "express-routing",
+  "version": "1.0.0",
+  "description": "An app allowing me to work with express routes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlh040/Express-Routing.git"
+  },
+  "author": "Jeff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlh040/Express-Routing/issues"
+  },
+  "homepage": "https://github.com/jlh040/Express-Routing#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mathjs": "^9.4.0"
+  }
+}
