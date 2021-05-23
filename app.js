@@ -4,8 +4,14 @@ const math = require('mathjs');
 const app = express();
 
 app.get('/mean', (req, res, next) => {
-    const nums = req.query.nums;
-    console.log(turnNumsToArr(nums))
+    const nums = turnNumsToArr(req.query.nums);
+    const mean = math.round(math.mean(nums), 2);
+    const response = {
+        operation: 'mean',
+        value: mean
+    }
+
+    res.json({response});
 })
 
 
