@@ -15,11 +15,20 @@ app.get('/mean', (req, res, next) => {
     }
 })
 
-// app.use((err, req, res, next) => {
-//     return res.status(err.status).json({
-//         Error: err.message
-//     })
-// });
+app.get('/median', (req, res, next) => {
+    try {
+        makeRes(math.median, req, res);
+    }
+    catch(e) {
+        return next(e);
+    }
+})
+
+app.use((err, req, res, next) => {
+    return res.status(err.status).json({
+        Error: err.message
+    })
+});
 
 
 
