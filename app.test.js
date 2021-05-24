@@ -1,6 +1,7 @@
 const request = require('supertest');
 const { app } = require('./app');
 const { turnNumsToArr, checkForInvalidNum, makeRes, checkOperation } = require('./helperFuncs');
+const { MathError } = require('./mathError');
 
 describe('mean tests', () => {
     test('do we get a 200 status code?', async () => {
@@ -91,5 +92,11 @@ describe('turnNumsToArr tests', () => {
     test('does our function return an array?', () => {
         let queryString = '1,17,24,99';
         expect(turnNumsToArr(queryString)).toBeInstanceOf(Array)
+    })
+
+    test('will it return an error?', () => {
+        expect(() => {
+            turnNumsToArr('')
+        }).toThrow(MathError);
     })
 })
