@@ -6,20 +6,34 @@ const app = express();
 
 function turnNumsToArr(nums) {
     const numArr = nums.split(',');
-    return numArr.map(val => {
+    numArr = numArr.map(val => {
         return +val;
     })
+
+    checkForInvalidNum(numArr);
+    return numArr
+}
+
+function checkForInvalidNum(nums) {
+    const invalidVal = nums.find(val => {
+        return (typeof val == 'NaN');
+    })
+    if (invalidVal || invalidVal === '') throw MathError(`${invalidVal} is not a number`, 400);
 }
 
 app.get('/mean', (req, res, next) => {
-    const nums = turnNumsToArr(req.query.nums);
-    const mean = math.round(math.mean(nums), 2);
-    const response = {
+    try {
+        const nums = turnNumsToArr(req.query.nums);
+        const mean = math.round(math.mean(nums), 2);
+        const response = {
         operation: 'mean',
         value: mean
+        }
+        res.json({response});
     }
-
-    res.json({response});
+    catch(e) {
+        return next(e)
+    }
 })
 
 
