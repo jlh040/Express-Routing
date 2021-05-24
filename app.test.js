@@ -100,3 +100,13 @@ describe('turnNumsToArr tests', () => {
         }).toThrow(MathError);
     })
 })
+
+describe('checkForInvalidNum tests', () => {
+    test('will it detect NaN?', () => {
+        let numArr = [1, 7, 12, 89, NaN];
+        expect(() => {
+            checkForInvalidNum(numArr)
+        }).toThrow()
+    })
+
+})
