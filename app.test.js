@@ -20,12 +20,17 @@ describe('mean tests', () => {
     test('do our errors work?', async () => {
         const resp = await request(app).get('/mean');
         let respObj = JSON.parse(resp.text);
-        expect(respObj['Error']).toContain('Nums are required')
+        expect(respObj['Error']).toContain('Nums are required');
 
         const resp2 = await request(app).get('/mean?nums=1,5,7,dog');
         let respObj2 = JSON.parse(resp2.text);
-        expect(respObj2['Error']).toContain('dog is not a number')
-
-
+        expect(respObj2['Error']).toContain('dog is not a number');
     })
 });
+
+describe('median tests', () => {
+    test('are we getting an OK status code?', async () => {
+        const response = await request(app).get('/median?nums=17,65,33,8,1');
+        expect(response.status).toEqual(200);
+    })
+})
