@@ -65,4 +65,11 @@ describe('mode tests', () => {
         expect(response.status).toEqual(200);
     })
 
+    test('do we get accurate answers?', async () => {
+        const resp = await request(app).get('/mode?nums=501,502,503,503,504,505,507');
+        let respObj = JSON.parse(resp.text);
+        expect(respObj['response']['value']).toContain(503);
+    })
+    
+
 })
