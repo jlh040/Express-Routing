@@ -7,6 +7,7 @@ let nanValue;
 const app = express();
 
 app.get('/mean', (req, res, next) => {
+    console.log(typeof req.query.nums)
     try {
         const nums = turnNumsToArr(req.query.nums);
         const mean = math.round(math.mean(nums), 2);
