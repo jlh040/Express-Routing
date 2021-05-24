@@ -23,7 +23,7 @@ function checkForInvalidNum(nums) {
 
 function makeRes(operation, req, res) {
     const nums = turnNumsToArr(req.query.nums);
-    const value = math.round(operation(nums), 2);
+    const value = operation !== math.mode ? math.round(operation(nums), 2) : operation(nums);
 
     const response = {
     operation: checkOperation(operation),

@@ -24,16 +24,20 @@ app.get('/median', (req, res, next) => {
     }
 })
 
+app.get('/mode', (req, res, next) => {
+    try {
+        makeRes(math.mode, req, res);
+    }
+    catch(e) {
+        return next(e);
+    }
+})
+
 app.use((err, req, res, next) => {
     return res.status(err.status).json({
         Error: err.message
     })
 });
-
-
-
-
-
 
 app.listen(3000, () => {
     console.log('Server started on port 3000');
