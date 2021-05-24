@@ -35,6 +35,10 @@ function makeRes(operation, req, res) {
 function checkOperation(func) {
     if (func === math.mean) {
         return 'mean'
+    } else if (func === math.median) {
+        return 'median'
+    } else {
+        return 'mode'
     }
 }
 
