@@ -43,4 +43,18 @@ describe('median tests', () => {
         let respObj = JSON.parse(resp.text);
         expect(respObj['response']['value']).toEqual(13);
     })
+
+    test('do our errors work?', async () => {
+        const resp = await request(app).get('/median')
+        let respObj = JSON.parse(resp.text);
+
+        expect(respObj['Error']).toContain('Nums are required');
+        expect(resp.status).toEqual(400)
+
+        const resp2 = await request(app).get('/median?nums=John');
+        let respObj2 = JSON.parse(resp2.text);
+
+        expect(respObj2['Error']).toContain('John is not a number');
+        expect(resp2.status).toEqual(400)
+    })
 })
