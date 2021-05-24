@@ -6,4 +6,4 @@ describe('mean tests', () => {
         const response = await request(app).get('/mean?nums=1,2,3');
         expect(response.status).toEqual(200);
     })
-})
+});
