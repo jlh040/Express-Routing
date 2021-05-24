@@ -45,5 +45,6 @@ function checkOperation(func) {
 module.exports = {
     turnNumsToArr,
     checkForInvalidNum,
-    makeRes
+    makeRes,
+    checkOperation
 }

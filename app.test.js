@@ -1,5 +1,6 @@
 const request = require('supertest');
 const { app } = require('./app');
+const { turnNumsToArr, checkForInvalidNum, makeRes, checkOperation } = require('./helperFuncs');
 
 describe('mean tests', () => {
     test('do we get a 200 status code?', async () => {
@@ -70,6 +71,25 @@ describe('mode tests', () => {
         let respObj = JSON.parse(resp.text);
         expect(respObj['response']['value']).toContain(503);
     })
-    
 
+    test('do our errors work?', async () => {
+        const resp = await request(app).get('/mode');
+        let respObj = JSON.parse(resp.text);
+
+        expect(respObj['Error']).toContain('Nums are required');
+        expect(resp.status).toEqual(400)
+
+        const resp2 = await request(app).get('/mode?nums=80,90,trackstar,100,51');
+        let respObj2 = JSON.parse(resp2.text);
+
+        expect(respObj2['Error']).toContain('trackstar is not a number');
+        expect(resp2.status).toEqual(400)
+    })
+})
+
+describe('turnNumsToArr tests', () => {
+    test('does our function return an array?', () => {
+        let queryString = '1,17,24,99';
+        expect(turnNumsToArr(queryString)).toBeInstanceOf(Array)
+    })
 })
