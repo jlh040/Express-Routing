@@ -58,3 +58,11 @@ describe('median tests', () => {
         expect(resp2.status).toEqual(400)
     })
 })
+
+describe('mode tests', () => {
+    test('are we getting an OK status code?', async () => {
+        const response = await request(app).get('/mode?nums=11,55,87,94');
+        expect(response.status).toEqual(200);
+    })
+
+})
