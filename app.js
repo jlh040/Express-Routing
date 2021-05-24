@@ -1,25 +1,10 @@
 const express = require('express');
 const math = require('mathjs');
-const MathError = require('./mathError');
+const { MathError } = require('./mathError');
+const { turnNumsToArr, checkForInvalidNum } = require('./helperFuncs');
+let nanValue;
 
 const app = express();
-
-function turnNumsToArr(nums) {
-    const numArr = nums.split(',');
-    numArr = numArr.map(val => {
-        return +val;
-    })
-
-    checkForInvalidNum(numArr);
-    return numArr
-}
-
-function checkForInvalidNum(nums) {
-    const invalidVal = nums.find(val => {
-        return (typeof val == 'NaN');
-    })
-    if (invalidVal || invalidVal === '') throw MathError(`${invalidVal} is not a number`, 400);
-}
 
 app.get('/mean', (req, res, next) => {
     try {
@@ -32,9 +17,15 @@ app.get('/mean', (req, res, next) => {
         res.json({response});
     }
     catch(e) {
-        return next(e)
+        return next(e);
     }
 })
+
+app.use((err, req, res, next) => {
+    return res.status(err.status).json({
+        Error: err.message
+    })
+});
 
 
 
