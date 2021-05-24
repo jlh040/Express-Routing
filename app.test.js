@@ -1,7 +1,8 @@
 const request = require('supertest');
 const { app } = require('./app');
-const { turnNumsToArr, checkForInvalidNum, makeRes, checkOperation } = require('./helperFuncs');
+const { turnNumsToArr, checkForInvalidNum, checkOperation } = require('./helperFuncs');
 const { MathError } = require('./mathError');
+const math = require('mathjs');
 
 describe('mean tests', () => {
     test('do we get a 200 status code?', async () => {
@@ -59,7 +60,7 @@ describe('median tests', () => {
         expect(respObj2['Error']).toContain('John is not a number');
         expect(resp2.status).toEqual(400)
     })
-})
+});
 
 describe('mode tests', () => {
     test('are we getting an OK status code?', async () => {
@@ -86,7 +87,7 @@ describe('mode tests', () => {
         expect(respObj2['Error']).toContain('trackstar is not a number');
         expect(resp2.status).toEqual(400)
     })
-})
+});
 
 describe('turnNumsToArr tests', () => {
     test('does our function return an array?', () => {
@@ -99,14 +100,27 @@ describe('turnNumsToArr tests', () => {
             turnNumsToArr('')
         }).toThrow(MathError);
     })
-})
+});
 
-describe('checkForInvalidNum tests', () => {
+describe('checkForInvalidNum test', () => {
     test('will it detect NaN?', () => {
         let numArr = [1, 7, 12, 89, NaN];
         expect(() => {
             checkForInvalidNum(numArr)
         }).toThrow()
     })
+});
 
-})
+describe('checkOperation test', () => {
+    test('can it identify the mean method?', () => {
+        expect(checkOperation(math.mean)).toBe('mean');
+    })
+
+    test('can it identify the median method?', () => {
+        expect(checkOperation(math.median)).toBe('median');
+    })
+
+    test('can it identify the mode method?', () => {
+        expect(checkOperation(math.mode)).toBe('mode');
+    })
+});
