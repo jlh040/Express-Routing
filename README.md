@@ -9,4 +9,4 @@
 
 - To get this code onto your machine, first run `git clone https://github.com/jlh040/Express-Routing.git`.
 - Then, assuming you have [Node](https://nodejs.org/en/) installed, run `npm install` to download all of the packages in **package.json**.
-- Next, run `node app.js` in your terminal and then enter something like **localhost:3000/median?nums=4,5,6,7,8** into your browser to get some JSON back.
+- Next, run `node server.js` in your terminal and then enter something like **localhost:3000/median?nums=4,5,6,7,8** into your browser to get some JSON back.
